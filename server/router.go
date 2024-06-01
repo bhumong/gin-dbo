@@ -2,9 +2,14 @@ package server
 
 import (
 	"github.com/bhumong/dbo-test/controller"
-	"github.com/bhumong/dbo-test/controller/user"
+	customerController "github.com/bhumong/dbo-test/controller/customer"
+	userController "github.com/bhumong/dbo-test/controller/user"
 	"github.com/bhumong/dbo-test/db"
+
+	customerRepository "github.com/bhumong/dbo-test/repository/customer"
 	userRepository "github.com/bhumong/dbo-test/repository/user"
+
+	customerService "github.com/bhumong/dbo-test/service/customer"
 	userService "github.com/bhumong/dbo-test/service/user"
 
 	"github.com/bhumong/dbo-test/middleware"
@@ -24,12 +29,25 @@ func NewRouter() *gin.Engine {
 
 	userRepo := userRepository.New(gormInstance)
 	userServ := userService.New(userRepo)
-	userController := user.New(userServ)
-	router.POST("/users", userController.Create)
-	router.POST("/login", userController.Login)
+	userCon := userController.New(userServ)
 
-	authGroup := router.Group("", middleware.JwtAuth())
-	authGroup.GET("/me", userController.Me)
+	v1 := router.Group("/v1")
+	v1.POST("/users", userCon.Create)
+	v1.POST("/login", userCon.Login)
+
+	authGroup := v1.Group("", middleware.JwtAuth())
+	authGroup.GET("/me", userCon.Me)
+
+	customerRepo := customerRepository.New(gormInstance)
+	customerServ := customerService.New(customerRepo)
+	customerCon := customerController.New(userServ, customerServ)
+
+	cg := authGroup.Group("/customers")
+	cg.GET("", customerCon.List)
+	cg.GET("/:customer_id", customerCon.Get)
+	cg.POST("", customerCon.CreateCustomer)
+	cg.PUT("/:customer_id", customerCon.UpdateCustomer)
+	cg.DELETE("/:customer_id", customerCon.DeleteCustomer)
 
 	return router
 

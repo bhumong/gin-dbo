@@ -7,7 +7,7 @@ import (
 )
 
 func AutoMigration(db *gorm.DB) {
-	err := db.Migrator().AutoMigrate(&model.User{})
+	err := db.Migrator().AutoMigrate(&model.User{}, &model.Customer{})
 	if err != nil {
 		log.Fatal().AnErr("db.Migrator().AutoMigrate", err).Send()
 		panic("panic due too failed automigrate")

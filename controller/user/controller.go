@@ -5,7 +5,6 @@ import (
 
 	"github.com/bhumong/dbo-test/model"
 	"github.com/gin-gonic/gin"
-	"github.com/golang-jwt/jwt/v5"
 )
 
 type UserController struct {
@@ -56,17 +55,7 @@ func (uc *UserController) Me(c *gin.Context) {
 		c.Error(model.ErrAuthClaimsNotFound)
 		return
 	}
-	jwtClaim, ok := claims.(jwt.MapClaims)
-	if !ok {
-		c.Error(model.ErrAuthClaimsNotFound)
-		return
-	}
-	userId, ok := jwtClaim["userId"].(string)
-	if !ok {
-		c.Error(model.ErrAuthClaimsNotFound)
-		return
-	}
-	user, err := uc.userService.GetCurrentUser(c.Request.Context(), userId)
+	user, err := uc.userService.GetCurrentUser(c.Request.Context(), claims)
 	if err != nil {
 		c.Error(err)
 		return

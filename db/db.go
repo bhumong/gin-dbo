@@ -15,7 +15,7 @@ var newLogger = logger.New(
 	&log.Logger,
 	logger.Config{
 		SlowThreshold:             time.Second,
-		LogLevel:                  logger.Silent,
+		LogLevel:                  logger.Error,
 		IgnoreRecordNotFoundError: true,
 		ParameterizedQueries:      true,
 		Colorful:                  false,

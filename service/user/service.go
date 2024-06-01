@@ -6,7 +6,7 @@ import (
 
 	"github.com/bhumong/dbo-test/model"
 	errors "github.com/bhumong/dbo-test/pkg/error"
-	"github.com/bhumong/dbo-test/utils"
+	jwtUtil "github.com/bhumong/dbo-test/util/jwt"
 	"github.com/golang-jwt/jwt/v5"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -55,7 +55,7 @@ func (s *UserService) Login(ctx context.Context, dto model.LoginRequestDTO) (*mo
 				SetCause(err)
 	}
 
-	authJwt := utils.GetJwt()
+	authJwt := jwtUtil.GetJwt()
 	tokenString, err := authJwt.NewWithClaims(jwt.MapClaims{
 		"userId": existUser.ID,
 	})
@@ -69,7 +69,15 @@ func (s *UserService) Login(ctx context.Context, dto model.LoginRequestDTO) (*mo
 	}, nil
 }
 
-func (s *UserService) GetCurrentUser(ctx context.Context, userId string) (*model.User, error) {
+func (s *UserService) GetCurrentUser(ctx context.Context, claims any) (*model.User, error) {
+	jwtClaim, ok := claims.(jwt.MapClaims)
+	if !ok {
+		return nil, model.ErrAuthClaimsNotFound
+	}
+	userId, ok := jwtClaim["userId"].(string)
+	if !ok {
+		return nil, model.ErrAuthClaimsNotFound
+	}
 	existUser, err := s.userRepo.GetUser(ctx, userId)
 	if err != nil || existUser == nil {
 		return nil, errors.New("USER_NOT_FOUND", "USER_NOT_FOUND", "user not found", http.StatusNotFound).

@@ -9,7 +9,7 @@ import (
 	"github.com/bhumong/dbo-test/db"
 	"github.com/bhumong/dbo-test/migration"
 	"github.com/bhumong/dbo-test/server"
-	"github.com/bhumong/dbo-test/utils"
+	"github.com/bhumong/dbo-test/util/jwt"
 )
 
 func main() {
@@ -21,7 +21,7 @@ func main() {
 	flag.Parse()
 	config.Init(*environment)
 	db.Init()
-	utils.Init()
+	jwt.Init()
 	migration.AutoMigration(db.GetDB())
 	server.Init()
 }

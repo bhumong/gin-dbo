@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/bhumong/dbo-test/model"
-	"github.com/bhumong/dbo-test/utils"
+	JwtUtil "github.com/bhumong/dbo-test/util/jwt"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/rs/zerolog/log"
@@ -26,7 +26,7 @@ func JwtAuth() gin.HandlerFunc {
 		}
 		tokenString := splitter[1]
 
-		jwtAuth := utils.GetJwt()
+		jwtAuth := JwtUtil.GetJwt()
 		claims, err := jwtAuth.Validate(tokenString)
 		if err != nil {
 			log.Debug().AnErr("jwtAuth.Validate", err).Send()

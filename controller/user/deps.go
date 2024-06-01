@@ -9,5 +9,5 @@ import (
 type UserService interface {
 	CreateUser(ctx context.Context, dto model.UserRequestDTO) (*model.User, error)
 	Login(ctx context.Context, dto model.LoginRequestDTO) (*model.LoginResponseDTO, error)
-	GetCurrentUser(ctx context.Context, userId string) (*model.User, error)
+	GetCurrentUser(ctx context.Context, claims any) (*model.User, error)
 }
