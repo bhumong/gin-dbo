@@ -1,5 +1,5 @@
 db:
-  dsn: "host=localhost user=dbo password=password dbname=dbo port=5433 sslmode=disable"
+  dsn: "host=postgres user=dbo password=password dbname=dbo port=5432 sslmode=disable"
 server:
   port: ":8888"
 bycript:

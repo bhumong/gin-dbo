@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  dbo-rest:
+    env_file:
+      - .env
+    container_name: dbo-rest
+    image: dbo-rest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - "./config:/go/src/app/config"
+    environment:
+      - "APP_ENV=development"
+      - "RUN_ON=docker"
+    ports:
+      - "8888:8888"
+    depends_on:
+      - postgres
+  postgres:
+    container_name: postgres-dbo
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: dbo
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: dbo
+      PGUSER: dbo
+      PGDATA: /var/lib/postgresql/data/dbo
+    volumes:
+      - db-dbo:/var/lib/postgresql/data/dbo
+    ports:
+      - "5434:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+volumes:
+  db-dbo:
+    driver: local
