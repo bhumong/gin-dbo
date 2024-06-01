@@ -1,0 +1,1069 @@
+{
+	"info": {
+		"_postman_id": "4673d7ad-1dfd-4fae-b7ed-a9fd06614888",
+		"name": "DBO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27235095"
+	},
+	"item": [
+		{
+			"name": "POST users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"name\",\n    \"password\": \"password\",\n    \"email\": \"email@mail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/v1/users",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "400 Bad request - Validation",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"name\",\n    \"password\": \"password\",\n    \"email\": \"email@mail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errors\": [\n        {\n            \"code\": \"VALIDATION_REQUIRED\",\n            \"field\": \"Email\",\n            \"message\": \"Key: 'UserRequestDTO.Email' Error:Field validation for 'Email' failed on the 'required' tag\",\n            \"detail\": \"\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "400 Bad request - email already exist",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"user already exist\",\n    \"error\": \"EMAIL_ALREADY_EXIST\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "200 Ok",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"name\",\n    \"password\": \"password\",\n    \"email\": \"email@mail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"f502cef5-149b-41ba-a7fa-96fb0984e833\",\n    \"name\": \"name\",\n    \"email\": \"email2@mail.com\",\n    \"createdAt\": \"2024-06-01T15:53:52.711180798+07:00\",\n    \"updatedAt\": \"2024-06-01T15:53:52.711180798+07:00\"\n}"
+				}
+			]
+		},
+		{
+			"name": "POST login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\": \"password\",\n    \"email\": \"email3@mail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/v1/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 Ok",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"password\",\n    \"email\": \"email3@mail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmNTAyY2VmNS0xNDliLTQxYmEtYTdmYS05NmZiMDk4NGU4MzMifQ.aUCCiG6LfCNsL98ejiyWxqy3eRSZA6GLxkQNP5SvjG4\"\n}"
+				},
+				{
+					"name": "400 Bad request - validation",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"password\",\n    \"email\": \"email3@mail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"login"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errors\": [\n        {\n            \"code\": \"VALIDATION_REQUIRED\",\n            \"field\": \"Email\",\n            \"message\": \"Key: 'LoginRequestDTO.Email' Error:Field validation for 'Email' failed on the 'required' tag\",\n            \"detail\": \"\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "400 Bad request - wrong password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"password\",\n    \"email\": \"email3@mail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"login"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"description\": \"password given is invalid\",\n    \"error\": \"INVALID_PASSWORD\"\n}"
+				},
+				{
+					"name": "400 Bad request - user not found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"password\",\n    \"email\": \"email3@mail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"login"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"description\": \"user not found\",\n    \"error\": \"USER_NOT_FOUND\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GET me",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/v1/me",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"me"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 Ok",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"me"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"f502cef5-149b-41ba-a7fa-96fb0984e833\",\n    \"name\": \"name\",\n    \"email\": \"email2@mail.com\",\n    \"createdAt\": \"2024-06-01T15:53:52.71118+07:00\",\n    \"updatedAt\": \"2024-06-01T15:53:52.71118+07:00\"\n}"
+				},
+				{
+					"name": "401 Unauthorized - invalid jwt",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"me"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"description\": \"unauthorized: invalid jwt\",\n    \"error\": \"unauthorized: invalid jwt\"\n}"
+				},
+				{
+					"name": "400 Bad request - user not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"me"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"description\": \"user not found\",\n    \"error\": \"USER_NOT_FOUND\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GET customer paginate",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/v1/customers?page=1&page_size=10&name=name",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"customers"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "10"
+						},
+						{
+							"key": "name",
+							"value": "name"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 Ok",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/customers?page=1&page_size=10&name=name",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "10"
+								},
+								{
+									"key": "name",
+									"value": "name"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"customers\": [\n        {\n            \"CreatedAt\": \"2024-06-01T16:01:56.659401+07:00\",\n            \"UpdatedAt\": \"2024-06-01T16:01:56.659401+07:00\",\n            \"DeletedAt\": null,\n            \"ID\": \"e8938e22-b1a5-49cc-ab73-9b324fc1f8ab\",\n            \"Name\": \"name\",\n            \"Email\": \"satu@mail.com\",\n            \"Phone\": \"129831928371928\",\n            \"Address\": \"asd\",\n            \"CreatedBy\": \"name\"\n        },\n        {\n            \"CreatedAt\": \"2024-06-01T16:01:45.517891+07:00\",\n            \"UpdatedAt\": \"2024-06-01T16:01:45.517891+07:00\",\n            \"DeletedAt\": null,\n            \"ID\": \"423991c7-f5a5-49d4-8656-91b4ddf0e20c\",\n            \"Name\": \"name\",\n            \"Email\": \"lala@mail.com\",\n            \"Phone\": \"129831928371928\",\n            \"Address\": \"asd\",\n            \"CreatedBy\": \"name\"\n        }\n    ],\n    \"paginate\": {\n        \"page\": 1,\n        \"pageSize\": 10,\n        \"pageCount\": 1,\n        \"total\": 2\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "GET customer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/v1/customers/:customer_id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"customers",
+						":customer_id"
+					],
+					"variable": [
+						{
+							"key": "customer_id",
+							"value": "66c3701e-e741-4542-9431-57bc1323d896"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 Ok",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/customers/:customer_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customers",
+								":customer_id"
+							],
+							"variable": [
+								{
+									"key": "customer_id",
+									"value": "66c3701e-e741-4542-9431-57bc1323d896"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"CreatedAt\": \"2024-06-01T16:01:45.517891+07:00\",\n    \"UpdatedAt\": \"2024-06-01T16:01:45.517891+07:00\",\n    \"DeletedAt\": null,\n    \"ID\": \"423991c7-f5a5-49d4-8656-91b4ddf0e20c\",\n    \"Name\": \"name\",\n    \"Email\": \"lala@mail.com\",\n    \"Phone\": \"129831928371928\",\n    \"Address\": \"asd\",\n    \"CreatedBy\": \"f502cef5-149b-41ba-a7fa-96fb0984e833\"\n}"
+				},
+				{
+					"name": "404 Not found - customer not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/customers/:customer_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customers",
+								":customer_id"
+							],
+							"variable": [
+								{
+									"key": "customer_id",
+									"value": "66c3701e-e741-4542-9431-57bc1323d896"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"description\": \"customer not found by current id\",\n    \"error\": \"customer not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "DELETE customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/v1/customers/:customer_id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"customers",
+						":customer_id"
+					],
+					"variable": [
+						{
+							"key": "customer_id",
+							"value": "66c3701e-e741-4542-9431-57bc1323d896"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 ok",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/customers/:customer_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customers",
+								":customer_id"
+							],
+							"variable": [
+								{
+									"key": "customer_id",
+									"value": "66c3701e-e741-4542-9431-57bc1323d896"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"ok\"\n}"
+				},
+				{
+					"name": "404 Not found - customer not found",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/customers/:customer_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customers",
+								":customer_id"
+							],
+							"variable": [
+								{
+									"key": "customer_id",
+									"value": "66c3701e-e741-4542-9431-57bc1323d896"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"description\": \"customer not found by current id\",\n    \"error\": \"customer not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "PUT customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"update name\",\n    \"phone\": \"321123\",\n    \"address\": \"update address 2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/v1/customers/:customer_id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"customers",
+						":customer_id"
+					],
+					"variable": [
+						{
+							"key": "customer_id",
+							"value": "66c3701e-e741-4542-9431-57bc1323d896"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 ok",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"update name\",\n    \"phone\": \"321123\",\n    \"address\": \"update address 2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/customers/:customer_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customers",
+								":customer_id"
+							],
+							"variable": [
+								{
+									"key": "customer_id",
+									"value": "66c3701e-e741-4542-9431-57bc1323d896"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"CreatedAt\": \"2024-06-01T16:01:56.659401+07:00\",\n    \"UpdatedAt\": \"2024-06-01T16:01:56.659401+07:00\",\n    \"DeletedAt\": null,\n    \"ID\": \"e8938e22-b1a5-49cc-ab73-9b324fc1f8ab\",\n    \"Name\": \"update name\",\n    \"Email\": \"satu@mail.com\",\n    \"Phone\": \"321123\",\n    \"Address\": \"update address 2\",\n    \"CreatedBy\": \"f502cef5-149b-41ba-a7fa-96fb0984e833\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GET customer create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"name\",\n    \"email\": \"satu@mail.com\",\n    \"phone\": \"129831928371928\",\n    \"address\": \"asd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/v1/customers",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 Ok",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"name\",\n    \"email\": \"asd\",\n    \"phone\": \"phone\",\n    \"address\": \"asd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/customers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"CreatedAt\": \"2024-06-01T14:04:55.587049+07:00\",\n    \"UpdatedAt\": \"2024-06-01T14:04:55.587049+07:00\",\n    \"DeletedAt\": null,\n    \"ID\": \"66c3701e-e741-4542-9431-57bc1323d896\",\n    \"Name\": \"name\",\n    \"Email\": \"lala@mail.com\",\n    \"Phone\": \"129831928371928\",\n    \"Address\": \"asd\",\n    \"CreatedBy\": \"8e319fd0-09c2-40ba-b8d6-3fa7b3927e45\"\n}"
+				},
+				{
+					"name": "400 Bad request - email already exist",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"name\",\n    \"email\": \"asd\",\n    \"phone\": \"phone\",\n    \"address\": \"asd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/customers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:8888",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmNTAyY2VmNS0xNDliLTQxYmEtYTdmYS05NmZiMDk4NGU4MzMifQ.aUCCiG6LfCNsL98ejiyWxqy3eRSZA6GLxkQNP5SvjG4",
+			"type": "string"
+		}
+	]
+}
