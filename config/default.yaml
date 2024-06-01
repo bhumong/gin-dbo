@@ -1,0 +1,9 @@
+db:
+  dsn: "host=localhost user=dbo password=password dbname=dbo port=5433 sslmode=disable"
+server:
+  port: ":8888"
+bycript:
+  saltLen: 14
+jwt:
+  secret: "lorem-ipsum"
+  expired: 1800

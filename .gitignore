@@ -1,0 +1,4 @@
+/vendor
+.env
+production.yaml
+development.yaml
