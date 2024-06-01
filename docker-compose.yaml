@@ -7,9 +7,10 @@ services:
     image: dbo-rest
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: ./.docker/dev.Dockerfile
     volumes:
-      - "./config:/go/src/app/config"
+      - ".:/app"
+      - "./config:/app/config"
     environment:
       - "APP_ENV=development"
       - "RUN_ON=docker"
